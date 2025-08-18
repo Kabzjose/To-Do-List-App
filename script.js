@@ -1,24 +1,30 @@
 let ul=document.getElementById("list")
 let button=document.getElementById("button")
-let text=document.getElementById("text")
+let input=document.getElementById("text")
 
- button.addEventListener("click",()=>{
-
+      function addTask(){
+      if(input.value.trim()==="")return;
     let li=document.createElement("li")
-     li.innerText=text.value
+     li.innerText=input.value
       let dltbtn=document.createElement("button")
       dltbtn.innerText="Delete"
       li.appendChild(dltbtn)
      ul.appendChild(li)
 
-     text.value=""
+     input.value=""
      dltbtn.addEventListener("click",()=>{
         li.remove()
      })
- })
+ }
+  
+  input.addEventListener("keydown" ,(e) => {
+  if (e.key === "Enter") {
+    addTask();
+  }})
 ul.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
-    // If we clicked a <button>, remove its parent <li>
+
     e.target.parentElement.remove();
   }
 });
+button.addEventListener("click",addTask);

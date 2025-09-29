@@ -1,11 +1,20 @@
 let ul = document.getElementById("list");
 let button = document.getElementById("button");
 let input = document.getElementById("text");
-let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // load saved tasks
-
+let tasks =[] 
+try{
+  tasks=JSON.parse(localStorage.getItem("tasks")) || []; // load saved tasks
+}catch(error){
+  alert("Could not load tasks:"+ error.message)
+  tasks=[]
+}
 // Save array to Local Storage
 function saveTasks() {
+  try{
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  }catch(error){
+    alert("Could not save tasks:"+error.message)
+  }
 }
 
 // Render all tasks
